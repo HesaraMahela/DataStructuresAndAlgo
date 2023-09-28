@@ -11,6 +11,7 @@ public class stack {
         mystack.pop();
         mystack.push(5);
         mystack.print();
+        //System.out.println(mystack.peek());
     }
     stack(int len){
         arr =new int[len];
