@@ -8,6 +8,7 @@ public class insertionSort {
     }
 
     public static void inSort(int[] arr){
+        // todo : i am not comfortable with this
         for (int i =1; i<arr.length; i++){
             int temp = arr[i];
             int j =i;
