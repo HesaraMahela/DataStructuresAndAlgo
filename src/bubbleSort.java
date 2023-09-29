@@ -13,6 +13,7 @@ public class bubbleSort {
 
 
         for(int i=0;i<arr.length-1;i++){
+            boolean isSwaped =false;
 
             for(int j=0; j<arr.length-i-1;j++){
                 if(arr[j]>arr[j+1]){// is out of order
@@ -20,8 +21,10 @@ public class bubbleSort {
                     int temp=arr[j];
                     arr[j]= arr[j+1];
                     arr[j+1]=temp;
+                    isSwaped = true;
                 }
             }
+            if(!isSwaped) break;
         }
     }
 }
