@@ -32,7 +32,7 @@ public class mergeSort {
         int right = mid + 1;//1+1=2
         int index = 0;
         while(left<=mid && right<=end){ // loop until one side is finished
-            if(arr[left]<arr[right]){
+            if(arr[left]<arr[right]){//
                 temp[index++] = arr[left++];
             }else {
                 temp[index++]=arr[right++];

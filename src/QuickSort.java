@@ -76,7 +76,7 @@ public class QuickSort {
     }
 //
     public static void main(String[] args) {
-        int[] array = new int[] { 5, 3, 9, 4, 6 };
+        int[] array = new int[] { 3,2,1};
         quickSort(array, 0, array.length - 1);
         System.out.println(Arrays.toString(array));
     }
@@ -86,21 +86,14 @@ public class QuickSort {
         if (start < end) {
             int pivot = arr[end];
             int i = start;
-            for (int j = start; j < end; j++) {
-
+            for (int j = start; j < end; j++) { // if you found something less than the pivot place it in the leftside
                 if (arr[j] < pivot) {
-
                     swap(arr,i++,j);
-
-
-
                 }
             }
             //swap pivot with i+1
             swap(arr,i,end);
             // recursion
-
-
             quickSort(arr, start, i -1);
             quickSort(arr, i + 1, end);
         }
