@@ -1,17 +1,7 @@
 import java.util.Arrays;
 
-public class hashmapR {
-    int[] arr ;
-
-    hashmapR(int size){
-        arr =new int[size];
-    }
-
- /* rehashing */
-
-    public int getHashCode(int val){
-        return val%arr.length;
-    }
+public class HashTableQua {
+    // quadratic probing
 
     public static void main(String[] args) {
         HashTableQua myhash = new HashTableQua(10);
@@ -21,18 +11,21 @@ public class hashmapR {
         myhash.remove(456);
         myhash.put(422);
         myhash.put(422);
-        myhash.put(455);
+        myhash.put(422);
         System.out.println(Arrays.toString(myhash.arr));
         System.out.println(myhash.get(455));
     }
+    int[] arr;
+    HashTableQua(int size){
+        arr = new int[size];
+    }
 
-
-    public int hash2(int value){
-        return value%(4);
+    public int hash(int value){
+        return value%arr.length;
     }
 
     public void put(int data){
-        int hashCode = getHashCode(data);
+        int hashCode = hash(data);
 
         // use i to count
         int j=0;
@@ -40,7 +33,7 @@ public class hashmapR {
         while(arr[hashCode]>0 && j*j<arr.length){ // this cant fill the
 
             j++;
-            hashCode= (getHashCode(data)+j*hash2(data))%arr.length;
+            hashCode= (hash(data+j*j))%arr.length;
         }
         if(j<arr.length){
             arr[hashCode] = data;
@@ -51,7 +44,7 @@ public class hashmapR {
     }
 
     public int get(int val){
-        int hashCode = getHashCode(val);// get the hash code and check the table and travel right until 0 is met
+        int hashCode = hash(val);// get the hash code and check the table and travel right until 0 is met
 
         int index=hashCode;
         int j=0;
@@ -61,7 +54,7 @@ public class hashmapR {
             if(arr[index]==val){
                 return index;
             }
-            index =(getHashCode(val)+j*hash2(val))%arr.length;
+            index =(hash(val+j*j))%arr.length;
             j++;
 
         }
@@ -76,6 +69,7 @@ public class hashmapR {
             arr[index]=-1;
         }
     }
+
 
 
 }
