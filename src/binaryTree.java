@@ -11,9 +11,10 @@ public class binaryTree {
         tree.insertion(4);
         tree.insertion(1);
         tree.insertion(9);
+        tree.deleteByCopy(9);
        // System.out.println(tree.root.left.right.data);
         //tree.postOrderTraversal();
-       // tree.breathFirstTraversal();
+       tree.breathFirstTraversal();
 
     }
 
@@ -104,12 +105,12 @@ public class binaryTree {
     private binaryTreeNode findPredecessor(binaryTreeNode temp){
         temp =temp.right;
         // go to the left most element of the subtree
-        while (temp.left.left !=null){
+        while (temp.left !=null){
                 temp=temp.left;
 
         }
-        binaryTreeNode Node =temp.left;
-        temp.left = null;
+        binaryTreeNode Node =temp;
+
         return Node;// returns predecessor
     }
 
@@ -124,84 +125,75 @@ public class binaryTree {
         return Node;// returns predecessor
     }
 
-
-    public void deletion(binaryTreeNode root, int val){
+    public void deleteByCopy(int val){
+        deletionByCoping(root,val);
+    }
+    public binaryTreeNode deletionByCoping(binaryTreeNode root, int val){
     if(root!=null){
         if (val<root.data){
-            deletion(root.left,val);
+            root.left= deletionByCoping(root.left,val);
         }else if(val>root.data){
-            deletion(root.right,val);
-        }else { // if root is the node to delete
+            root.right= deletionByCoping(root.right,val);
+        }else if(root.data==val){ // if root is the node to delete
 
             // leaf node then just delete
             if (root.left==null &&root.right==null){
-                root=null;
+                System.out.println("equal " + root.data);
+                return null;
             }else if (root.right==null){// only left element then replace
                 // we are going to replace data instead of the objects
                 root.data = root.left.data;
                 root.left= null;
+                return root;
             }else if(root.left==null){// only right element exists
                 root.data =root.right.data;
                 root.right=null;
-            }else if(root.right!=null && root.left!=null){// this is not necessary use just else
-                root.data = findPredecessor(root).data;// gives the left most element of the subtree
-                // find predecessor deletes the connection of left most element
+                return root;
+            }else if(root.right!=null && root.left!=null){
+                // this is not necessary use just else
+                    root.data = findSuccessor(root).data;// gives the left most element of the subtree
+                    // find predecessor deletes the connection of left most element
+                    root.left = deletionByCoping(root.left,root.data);
+                    return root;
             }
         }
 
     }
+    return root;
     }
-
-    /*
-    public void delete(int value){
-        // if the node was a leaf node (no children)then just remove it
-        binaryTreeNode parentNode= root;
-        binaryTreeNode temp = root;
-        while (temp !=null){
-            if (value<temp.data){
-                parentNode =temp;
-                temp=temp.left;
-            }else if( value>temp.data){
-                parentNode =temp;
-                temp = temp.right;
-            }else {
-                break;
-            }
-        } // traversal to find the node
-
-        if (temp!=null){// node exists
-            if(temp.left ==null && temp.right==null){
-                if (parentNode.left == temp){
-                    parentNode.left=null;
-                } else {
-                    parentNode.right=null;
-                }
-            }else if(temp.left ==null){
-                // set right child to the parent directly
-                if (parentNode.left == temp){
-                    parentNode.left=temp.right;
-                } else {
-                    parentNode.right=temp.right;
-                }
-
-            }else if(temp.right ==null){
-                // set right child to the parent directly
-                if (parentNode.right == temp){
-                    parentNode.right=temp.left;
-                } else {
-                    parentNode.left=temp.left;
-                }
-
-            }else {// todo: tow children case and somethings wrong i can feel it
-
-
-            }
-
-        }
-
-
-
-    }
-    */
+//// todo:this one is not working idk the below
+//    binaryTreeNode deleteByCopyImp(binaryTreeNode root, int val) {
+//        if (root != null) {
+//            if (val < root.data) {
+//                root.left = deleteByCopyImp(root.left, val);
+//
+//            }else if (val > root.data) {
+//                root.left = deleteByCopyImp(root.right, val);
+//
+//            }else {
+//                if(root.left==null && root.right==null){
+//                    return null;
+//                }else if(root.left==null){
+//                    root.data=root.right.data;
+//                    root.right =null;
+//                    return root;
+//                }else if(root.right==null){
+//                    root.data=root.left.data;
+//                    root.left =null;
+//                    return root;
+//
+//                }else {
+//                    //find
+//                    root.data = findSuccessor(root).data;// gives the left most element of the subtree
+//                    // find predecessor deletes the connection of left most element
+//                    root.left = deleteByCopyImp(root.left,root.data);
+//                    return root;
+//
+//                }
+//            }
+//
+//        }
+//        return root;
+//    }
 
 }
