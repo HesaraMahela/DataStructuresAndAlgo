@@ -77,7 +77,7 @@ public class QuickSort {
 //
     public static void main(String[] args) {
         int[] array = new int[] { 3,2,1};
-        quickSort(array, 0, array.length - 1);
+        quickSort1(array, 0, array.length - 1);
         System.out.println(Arrays.toString(array));
     }
 
@@ -98,4 +98,30 @@ public class QuickSort {
             quickSort(arr, i + 1, end);
         }
     }
+
+    static void quickSort1(int[] arr, int start,int end){
+        if(start<end){
+
+        }
+        int pivot =arr[end];
+        int i=start;
+        for(int j=start; j<end;j++){
+            if(arr[j]<pivot){
+                //swap(1,j)
+                int temp = arr[i];
+                arr[i] =arr[j];
+                arr[j] =temp;
+                i++;
+            }
+        }
+        // swap last one with the i position
+
+        arr[end] = arr[i];
+        arr[i] = pivot;
+
+        quickSort(arr, start,i-1);
+        quickSort(arr,i+1,end);
+    }
+
+
 }
