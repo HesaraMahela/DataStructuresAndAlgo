@@ -15,6 +15,9 @@ public class binaryTree {
        // System.out.println(tree.root.left.right.data);
         //tree.postOrderTraversal();
        tree.breathFirstTraversal();
+        System.out.println("jjjjjjjjjj");
+        System.out.println(tree.size(tree.root));
+        System.out.println(tree.height(tree.root));
 
     }
 
@@ -196,4 +199,24 @@ public class binaryTree {
 //        return root;
 //    }
 
+    public int size(binaryTreeNode root){
+        if(root!=null){
+            return size(root.left) +1 +size(root.right);
+        }else {
+            return 0;
+        }
+    }
+
+    public int height(binaryTreeNode root){
+        if(root!=null){
+            if (height(root.left)<height(root.right)){
+                return height(root.right)+1;
+            }else {
+                return height(root.left)+1;
+            }
+
+        }else {
+            return 0;
+        }
+    }
 }

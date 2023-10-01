@@ -4,6 +4,7 @@ public class evalPostFix {
     public static void main(String[] args) {
         //System.out.println(calculatePostFix("235*+39/-"));
         System.out.println(calculatePreFix("-*235"));
+        System.out.println(infixToPostFix("(2+3)*(3-2)"));
     }
     static double calculatePostFix(String expression){
         Stack<String> stack = new Stack<>();
@@ -13,8 +14,8 @@ public class evalPostFix {
                 // a number
                 stack.push(String.valueOf(character));
             }else {
-                double operand1 = Double.parseDouble(stack.pop());
                 double operand2 = Double.parseDouble(stack.pop());
+                double operand1 = Double.parseDouble(stack.pop());
                 double result =0;
                 if (character =='+'){
                     result =operand1+operand2;
