@@ -18,12 +18,12 @@ public class hashmapR {
         myhash.put(456);
         myhash.put(455);
         myhash.put(468);
-        myhash.remove(456);
+
         myhash.put(422);
         myhash.put(422);
         myhash.put(455);
         System.out.println(Arrays.toString(myhash.arr));
-        System.out.println(myhash.get(455));
+
     }
 
 
@@ -50,7 +50,7 @@ public class hashmapR {
         //linear hashing
     }
 
-    public int get(int val){
+    public boolean contains(int val){
         int hashCode = getHashCode(val);// get the hash code and check the table and travel right until 0 is met
 
         int index=hashCode;
@@ -59,23 +59,23 @@ public class hashmapR {
         while(arr[index]!=0 && index != hashCode-1){
 
             if(arr[index]==val){
-                return index;
+                return true;
             }
             index =(getHashCode(val)+j*hash2(val))%arr.length;
             j++;
 
         }
-        return -1;
+        return false;
 
     }
 
 
-    public void remove(int val){
-        int index=get(val);
-        if(index>-1){
-            arr[index]=-1;
-        }
-    }
+//    public void remove(int val){
+//        int index=get(val);
+//        if(index>-1){
+//            arr[index]=-1;
+//        }
+//    }
 
 
 }

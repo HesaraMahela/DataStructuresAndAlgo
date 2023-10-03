@@ -8,12 +8,12 @@ public class HashTableQua {
         myhash.put(456);
         myhash.put(455);
         myhash.put(468);
-        myhash.remove(456);
+        //myhash.remove(456);
         myhash.put(422);
         myhash.put(422);
         myhash.put(422);
         System.out.println(Arrays.toString(myhash.arr));
-        System.out.println(myhash.get(455));
+        System.out.println(myhash.contains(455));
     }
     int[] arr;
     HashTableQua(int size){
@@ -33,7 +33,7 @@ public class HashTableQua {
         while(arr[hashCode]>0 && j*j<arr.length){ // this cant fill the
 
             j++;
-            hashCode= (hash(data+j*j))%arr.length;
+            hashCode= (hash(data)+j*j)%arr.length;
         }
         if(j<arr.length){
             arr[hashCode] = data;
@@ -43,7 +43,7 @@ public class HashTableQua {
         //linear hashing
     }
 
-    public int get(int val){
+    public boolean contains(int val){
         int hashCode = hash(val);// get the hash code and check the table and travel right until 0 is met
 
         int index=hashCode;
@@ -52,23 +52,23 @@ public class HashTableQua {
         while(arr[index]!=0 && index != hashCode-1){
 
             if(arr[index]==val){
-                return index;
+                return true;
             }
-            index =(hash(val+j*j))%arr.length;
+            index =(hash(val)+j*j)%arr.length;
             j++;
 
         }
-        return -1;
+        return false;
 
     }
 
 
-    public void remove(int val){
-        int index=get(val);
-        if(index>-1){
-            arr[index]=-1;
-        }
-    }
+//    public void remove(int val){
+//        int index=get(val);
+//        if(index>-1){
+//            arr[index]=-1;
+//        }
+//    }
 
 
 

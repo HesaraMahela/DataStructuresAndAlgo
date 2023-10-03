@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 //  why hash map? search something faster than going through the whole list
 // how using a hash function?
-// todo: terminology ??? good hash function,perfect // there is no deletion
+// todo: terminology ??? good hash function, perfect // there is no deletion
 public class Hashmap {
     // liner hash
 
@@ -30,9 +30,9 @@ public class Hashmap {
         // use i to count
         int j=0;
 
-        while(arr[hashCode]>0 && j<arr.length){
+        while(arr[hashCode]>0 && j<arr.length){// arr[hashCode]>0 check the place is occupid
             j++;
-            hashCode= (hashCode+1)%arr.length;
+            hashCode= (hashCode+1)%arr.length; // linear probing
         }
         if(j<arr.length){
             arr[hashCode] = data;
@@ -42,7 +42,7 @@ public class Hashmap {
         //linear hashing
     }
 
-    public int get(int val){
+    public int get(int val){ // should be renamed as contains
         int hashCode = hash(val);// get the hash code and check the table and travel right until 0 is met
 
         int index=hashCode;

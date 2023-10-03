@@ -18,6 +18,7 @@ public class CircularDoublyLinkedList {
 
 
  }
+
  public void insert(int data){
      DoublyLinkedListNode node = new DoublyLinkedListNode(data);
      if (Head==null){ // inserting first element
