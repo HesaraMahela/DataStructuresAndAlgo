@@ -11,9 +11,9 @@ public class Hashmap {
         myhash.put(456);
         myhash.put(455);
         myhash.put(468);
-        myhash.remove(456);
+       // myhash.remove(456);
         System.out.println(Arrays.toString(myhash.arr));
-        System.out.println(myhash.get(455));
+        //System.out.println(myhash.get(455));
     }
     int[] arr;
     Hashmap(int size){
@@ -42,29 +42,29 @@ public class Hashmap {
         //linear hashing
     }
 
-    public int get(int val){ // should be renamed as contains
+    public boolean contains(int val){ // should be renamed as contains
         int hashCode = hash(val);// get the hash code and check the table and travel right until 0 is met
 
         int index=hashCode;
 
         while(arr[index]!=0 && index != hashCode-1){
             if(arr[index]==val){
-                return index;
+                return true;
             }
             index =(index+1)%arr.length;
 
         }
-        return -1;
+        return false;
 
     }
 
 
-    public void remove(int val){
-        int index=get(val);
-        if(index>-1){
-            arr[index]=-1;
-        }
-    }
+//    public void remove(int val){
+//        int index=get(val);
+//        if(index>-1){
+//            arr[index]=-1;
+//        }
+//    }
 
 
 

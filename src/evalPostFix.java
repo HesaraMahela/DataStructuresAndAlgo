@@ -2,9 +2,9 @@ import java.util.Stack;
 
 public class evalPostFix {
     public static void main(String[] args) {
-        //System.out.println(calculatePostFix("235*+39/-"));
-        System.out.println(calculatePreFix("-*235"));
-        System.out.println(infixToPostFix("(2+3)*(3-2)"));
+        //System.out.println(calculatePostFix("235*-"));
+        //System.out.println(calculatePreFix("-*532"));
+        //System.out.println(infixToPostFix("(2+3)*(3-2)"));
     }
     static double calculatePostFix(String expression){
         Stack<String> stack = new Stack<>();
